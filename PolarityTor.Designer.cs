@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PolarityTorClient));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -48,13 +49,13 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblConnection = new System.Windows.Forms.Label();
             this.lblStatusText = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblUp = new System.Windows.Forms.Label();
             this.lblDown = new System.Windows.Forms.Label();
-            this.lblConnection = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -302,6 +303,19 @@
             this.panel2.Size = new System.Drawing.Size(254, 552);
             this.panel2.TabIndex = 10;
             // 
+            // lblConnection
+            // 
+            this.lblConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblConnection.AutoSize = true;
+            this.lblConnection.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConnection.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblConnection.Location = new System.Drawing.Point(12, 24);
+            this.lblConnection.Name = "lblConnection";
+            this.lblConnection.Size = new System.Drawing.Size(153, 32);
+            this.lblConnection.TabIndex = 3;
+            this.lblConnection.Text = "CONNECTED";
+            this.lblConnection.Visible = false;
+            // 
             // lblStatusText
             // 
             this.lblStatusText.AutoSize = true;
@@ -368,19 +382,6 @@
             this.lblDown.TabIndex = 3;
             this.lblDown.Text = "0 KBytes/s";
             // 
-            // lblConnection
-            // 
-            this.lblConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblConnection.AutoSize = true;
-            this.lblConnection.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnection.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblConnection.Location = new System.Drawing.Point(12, 24);
-            this.lblConnection.Name = "lblConnection";
-            this.lblConnection.Size = new System.Drawing.Size(153, 32);
-            this.lblConnection.TabIndex = 3;
-            this.lblConnection.Text = "CONNECTED";
-            this.lblConnection.Visible = false;
-            // 
             // PolarityTorClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,10 +390,11 @@
             this.ClientSize = new System.Drawing.Size(822, 628);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PolarityTorClient";
             this.ShowIcon = false;
             this.Text = "Polarity Tor Client";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PolarityTor_FormClosing);
             this.Load += new System.EventHandler(this.PolarityTorClient_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);

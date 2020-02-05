@@ -15,9 +15,6 @@ namespace PolarityTor
 {
     public partial class PolarityTorClient : Form
     {
-
-        private const string PROGRESS_DISABLED = "DISABLED";
-        private const string PROGRESS_INDETERMINATE = "INDETERMINATE";
         private Client client;
         private volatile bool closing;
         private ORConnectionCollection connections;
@@ -39,7 +36,7 @@ namespace PolarityTor
         {
             Process[] previous = Process.GetProcessesByName("tor");
 
-            SetStatusProgress(PROGRESS_INDETERMINATE);
+            SetStatusProgress(Constants.PROGRESS_INDETERMINATE);
 
             if (previous != null && previous.Length > 0)
             {
@@ -66,7 +63,7 @@ namespace PolarityTor
 
             if (!client.IsRunning)
             {
-                SetStatusProgress(PROGRESS_DISABLED);
+                SetStatusProgress(Constants.PROGRESS_DISABLED);
                 SetStatusText("The tor client could not be created");
                 return;
             }
@@ -78,13 +75,13 @@ namespace PolarityTor
             client.Configuration.PropertyChanged += (s, e) => { Invoke((Action)delegate { configGrid.Refresh(); }); };
             client.Shutdown += new EventHandler(OnClientShutdown);
 
-            SetStatusProgress(PROGRESS_DISABLED);
+            SetStatusProgress(Constants.PROGRESS_DISABLED);
             SetStatusText("Ready");
 
             configGrid.SelectedObject = client.Configuration;
 
             SetStatusText("Downloading routers");
-            SetStatusProgress(PROGRESS_INDETERMINATE);
+            SetStatusProgress(Constants.PROGRESS_INDETERMINATE);
 
             try
             {
@@ -95,7 +92,7 @@ namespace PolarityTor
                     if (allRouters == null)
                     {
                         SetStatusText("Could not download routers");
-                        SetStatusProgress(PROGRESS_DISABLED);
+                        SetStatusProgress(Constants.PROGRESS_DISABLED);
                     }
                     else
                     {
@@ -109,8 +106,8 @@ namespace PolarityTor
                         });
 
                         SetStatusText("Ready");
-                        SetStatusProgress(PROGRESS_DISABLED);
-                        showTorReady();
+                        SetStatusProgress(Constants.PROGRESS_DISABLED);
+                        ShowTorReady();
                     }
                 });
             }
@@ -120,7 +117,7 @@ namespace PolarityTor
             }
         }
 
-        private void showTorReady()
+        private void ShowTorReady()
         {
             InvokeOnUiThreadIfRequired(() =>
             {
@@ -384,7 +381,7 @@ namespace PolarityTor
             });
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void PolarityTor_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (client != null && client.IsRunning)
             {
